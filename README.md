@@ -33,3 +33,9 @@ O projeto será desenvolvido seguindo as etapas abaixo:
 
 ## 🛠️ Tecnologias Utilizadas
 
+O front-end do projeto está sendo construído com as seguintes tecnologias:
+
+*   **HTML5:** Para a estruturação semântica do conteúdo.
+*   **CSS3:** Para estilizações customizadas e animações.
+*   **Tailwind CSS:** Um framework CSS utility-first para a criação rápida de interfaces de usuário modernas.
+*   **TypeScript:** Para adicionar tipagem estática ao JavaScript, garantindo um código mais robusto e de fácil manutenção.
