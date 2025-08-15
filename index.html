@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Audiolivros - Seu universo de histórias para ouvir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-orange-500">
+                <a href="#">Central Audiolivros</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#destaques" class="text-gray-300 hover:text-orange-500 transition-colors">Destaques</a>
+                <a href="#categorias" class="text-gray-300 hover:text-orange-500 transition-colors">Categorias</a>
+                <a href="#sobre" class="text-gray-300 hover:text-orange-500 transition-colors">Sobre</a>
+            </div>
+            <div class="md:hidden">
+                <!-- Mobile menu button can be added here -->
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-bg py-24 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">Seu universo de histórias para ouvir</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">Encontre informações completas sobre seus audiolivros favoritos. Sinopse, narradores, estúdios e onde ouvir. Tudo em um só lugar.</p>
+                <div class="max-w-2xl mx-auto">
+                    <div class="relative">
+                        <input type="search" id="search-bar" placeholder="Busque por título, autor ou narrador..." class="w-full py-4 px-6 rounded-full bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all">
+                        <svg class="w-6 h-6 text-gray-400 absolute right-6 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Destaques Section -->
+        <section id="destaques" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">Audiolivros em Destaque</h2>
+                <div id="audiobook-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
+                    <!-- Cards de audiolivros serão inseridos aqui pelo JavaScript -->
+                </div>
+                 <p id="no-results" class="text-center text-gray-400 text-lg hidden">Nenhum audiolivro encontrado com os termos da sua busca.</p>
+            </div>
+        </section>
+
+        <!-- Sobre Section -->
+        <section id="sobre" class="bg-gray-800 py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-4">O que é a Central Audiolivros?</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    A Central Audiolivros nasceu da paixão por histórias e da necessidade de um espaço dedicado a elas. Nossa missão é ser a principal fonte de informações para ouvintes, centralizando detalhes que vão além da capa: quem narra, qual o estúdio, se há efeitos sonoros e, claro, onde você pode mergulhar em cada narrativa.
+                </p>
+            </div>
+        </section>
+
+        <!-- Categorias Section -->
+        <section id="categorias" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-12">Explore por Categoria</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all">
+                        <h3 class="font-bold text-xl">Ficção Científica</h3>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all">
+                        <h3 class="font-bold text-xl">Fantasia</h3>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all">
+                        <h3 class="font-bold text-xl">Biografia</h3>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all">
+                        <h3 class="font-bold text-xl">Suspense</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>2025 Central Audiolivros.</p>
+            <p class="text-sm mt-2">Um projeto para amantes de histórias.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 hidden modal-backdrop">
+        <div id="modal-content" class="bg-gray-800 rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col md:flex-row overflow-hidden transform scale-95">
+            <!-- Conteúdo do modal será inserido aqui pelo JavaScript -->
+        </div>
+    </div>
+
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
