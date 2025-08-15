@@ -18,7 +18,7 @@ A ideia principal é construir um site onde os usuários possam encontrar inform
 
 O projeto será desenvolvido seguindo as etapas abaixo:
 
-  * [ ] **Fase 1: Planejamento e Estruturação**
+  * [x] **Fase 1: Planejamento e Estruturação**
 
   * [ ] **Fase 2: Desenvolvimento do Back-end**
 
