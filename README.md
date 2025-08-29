@@ -1,35 +1,39 @@
 # Central Audiolivros
 
-## Descrição
+## 📖 Sobre o Projeto
 
-A **Central Audiolivros** é uma plataforma web dedicada a entusiastas de audiolivros. O projeto tem como objetivo criar um hub centralizado de informações, permitindo que os usuários descubram, explorem e compartilhem detalhes sobre seus audiolivros favoritos. Em um mercado crescente, a plataforma busca preencher a lacuna de um espaço organizado e focado exclusivamente no universo dos audiolivros, oferecendo uma experiência rica e informativa para a comunidade.
+A **Central Audiolivros** é uma vitrine digital para entusiastas de audiolivros. O site foi criado para ser um local centralizado onde os usuários podem encontrar informações sobre diversas obras, incluindo sinopse, narrador e onde ouvir.
 
-## O Projeto
+> **Aviso:** Todos os audiolivros e suas informações são fictícios e servem apenas para demonstrar o funcionamento do site.
 
-A ideia principal é construir um site onde os usuários possam encontrar informações detalhadas sobre audiolivros, incluindo:
+## ✨ Principais Recursos
 
-  * **Sinopse:** Um resumo completo do audiolivro.
-  * **Ficha Técnica:** Detalhes sobre narradores, autores, editoras e estúdios de gravação.
-  * **Recursos de Áudio:** Informações sobre a presença de efeitos sonoros, trilhas musicais e outros recursos imersivos.
-  * **Plataformas Disponíveis:** Links diretos para as páginas dos audiolivros nas principais plataformas de streaming e venda (como Audible, Storytel, Ubook, etc.).
-  * **Avaliações e Comentários:** Um espaço para a comunidade avaliar e discutir sobre os audiolivros.
+*   **Busca Rápida:** Encontre audiolivros por título, autor ou narrador.
+*   **Filtro por Categoria:** Navegue facilmente por gêneros como Ficção Científica, Fantasia e outros.
+*   **Detalhes Completos:** Veja informações detalhadas de cada livro em uma visualização prática.
+*   **Design Responsivo:** Acesse o site de qualquer dispositivo, seja computador, tablet ou celular.
+*   **Acessibilidade:** Navegação amigável, inclusive para quem utiliza apenas o teclado.
 
-## 🚀 Etapas de Desenvolvimento
+## 🚀 Status do Projeto
 
-O projeto será desenvolvido seguindo as etapas abaixo:
+Aqui está um resumo do que já foi feito e dos próximos passos planejados para a Central Audiolivros.
 
-  * [x] **Fase 1: Planejamento e Estruturação**
+### ✅ Concluído
 
-  * [ ] **Fase 2: Desenvolvimento do Back-end**
+*   **Interface Principal:** Estrutura visual e layout do site.
+*   **Listagem de Audiolivros:** Exibição dos livros a partir de uma base de dados interna.
+*   **Busca por Texto:** Campo de busca funcional.
+*   **Filtro por Categorias:** Botões de categoria que filtram a lista de livros.
+*   **Modal de Detalhes:** Janela com informações completas ao clicar em um livro.
+*   **Responsividade:** O site se adapta a diferentes tamanhos de tela.
+*   **Acessibilidade Básica:** Navegação via teclado e foco gerenciado no modal.
 
-  * [ ] **Fase 3: Desenvolvimento do Front-end**
+### 🎯 Próximas Etapas
 
-  * [ ] **Fase 4: Funcionalidades Adicionais e Testes**
-
-  * [ ] **Fase 5: Implantação e Lançamento**
-
-  * [ ] **Fase 6: Pós-Lançamento e Melhorias**
-
+*   **Integração com API:** Conectar o site a uma API real para buscar dados de audiolivros dinamicamente.
+*   **Sistema de Avaliação:** Permitir que usuários avaliem os audiolivros.
+*   **Páginas Individuais:** Criar uma página dedicada para cada audiolivro, com URL própria.
+*   **Animações Avançadas:** Adicionar transições mais fluidas para uma experiência de usuário aprimorada.
 
 ## 🛠️ Tecnologias Utilizadas
 

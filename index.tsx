@@ -1,4 +1,5 @@
 
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -21,6 +22,7 @@ interface Audiobook {
     studio: string;
     features: string[];
     platforms: Platform[];
+    category: string;
 }
 
 // --- BANCO DE DADOS DE EXEMPLO ---
@@ -38,7 +40,8 @@ const audiobooks: Audiobook[] = [
         platforms: [
             { name: "Audible", url: "#" },
             { name: "Storytel", url: "#" },
-        ]
+        ],
+        category: "Ficção Científica",
     },
     {
         id: 2,
@@ -53,7 +56,8 @@ const audiobooks: Audiobook[] = [
         platforms: [
             { name: "Google Play Livros", url: "#" },
             { name: "Audible", url: "#" },
-        ]
+        ],
+        category: "Fantasia",
     },
     {
         id: 3,
@@ -68,7 +72,8 @@ const audiobooks: Audiobook[] = [
         platforms: [
             { name: "Storytel", url: "#" },
             { name: "Ubook", url: "#" },
-        ]
+        ],
+        category: "Suspense",
     },
     {
         id: 4,
@@ -82,7 +87,8 @@ const audiobooks: Audiobook[] = [
         features: ["Efeitos de Eco Realistas", "Sons da Natureza"],
         platforms: [
             { name: "Audible", url: "#" },
-        ]
+        ],
+        category: "Aventura",
     },
     {
         id: 5,
@@ -97,9 +103,14 @@ const audiobooks: Audiobook[] = [
         platforms: [
             { name: "Storytel", url: "#" },
             { name: "Skeelo", url: "#" },
-        ]
+        ],
+        category: "Ficção Científica",
     }
 ];
+
+// --- STATE MANAGEMENT ---
+let currentCategoryFilter: string | null = null;
+let lastFocusedElement: HTMLElement | null = null;
 
 // --- DOM ELEMENT SELECTORS ---
 const audiobookGrid = document.getElementById('audiobook-grid') as HTMLElement;
@@ -107,6 +118,24 @@ const searchBar = document.getElementById('search-bar') as HTMLInputElement;
 const noResultsMessage = document.getElementById('no-results') as HTMLParagraphElement;
 const modal = document.getElementById('modal') as HTMLDivElement;
 const modalContent = document.getElementById('modal-content') as HTMLDivElement;
+const categoryCards = document.querySelectorAll('.category-card');
+const clearFilterBtn = document.getElementById('clear-filter-btn') as HTMLButtonElement;
+
+
+// --- FUNÇÃO PARA RENDERIZAR ESQUELETO DE CARDS ---
+const renderSkeletons = () => {
+    audiobookGrid.innerHTML = '';
+    for (let i = 0; i < 10; i++) {
+        const skeleton = document.createElement('div');
+        skeleton.className = 'w-full';
+        skeleton.innerHTML = `
+            <div class="rounded-lg overflow-hidden skeleton w-full h-auto aspect-[2/3] mb-3"></div>
+            <div class="h-5 w-3/4 rounded skeleton mb-2"></div>
+            <div class="h-4 w-1/2 rounded skeleton"></div>
+        `;
+        audiobookGrid.appendChild(skeleton);
+    }
+}
 
 // --- FUNÇÃO PARA RENDERIZAR OS CARDS ---
 const renderAudiobooks = (items: Audiobook[]) => {
@@ -118,6 +147,9 @@ const renderAudiobooks = (items: Audiobook[]) => {
         items.forEach(book => {
             const card = document.createElement('div');
             card.className = 'cursor-pointer group card-hover-effect';
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', `Ver detalhes de ${book.title}`);
             card.innerHTML = `
                 <div class="rounded-lg overflow-hidden shadow-lg bg-gray-800">
                     <img src="${book.cover}" alt="Capa de ${book.title}" class="w-full h-auto aspect-[2/3] object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x600/111827/FFFFFF?text=Imagem+N%C3%A3o+Dispon%C3%ADvel';">
@@ -127,21 +159,54 @@ const renderAudiobooks = (items: Audiobook[]) => {
                     <p class="text-sm text-gray-400">${book.narrator}</p>
                 </div>
             `;
-            card.addEventListener('click', () => openModal(book));
+            const openDetails = () => {
+                lastFocusedElement = document.activeElement as HTMLElement;
+                openModal(book);
+            };
+            card.addEventListener('click', openDetails);
+            // FIX: Explicitly type the event as KeyboardEvent to access the 'key' property.
+            card.addEventListener('keydown', (e: KeyboardEvent) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openDetails();
+                }
+            });
             audiobookGrid.appendChild(card);
         });
     }
 };
 
+// --- MODAL ACCESSIBILITY ---
+const trapFocus = (e: KeyboardEvent) => {
+    const focusableElements = modal.querySelectorAll<HTMLElement>('button, a[href]');
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement = focusableElements[focusableElements.length - 1];
+    
+    if (e.key !== 'Tab') return;
+
+    if (e.shiftKey) { /* shift + tab */
+        if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement.focus();
+            e.preventDefault();
+        }
+    } else { /* tab */
+        if (document.activeElement === lastFocusableElement) {
+            firstFocusableElement.focus();
+            e.preventDefault();
+        }
+    }
+};
+
 // --- FUNÇÃO PARA ABRIR O MODAL ---
 const openModal = (book: Audiobook) => {
+    modal.setAttribute('aria-labelledby', `modal-title-${book.id}`);
     modalContent.innerHTML = `
         <div class="w-full md:w-1/3 flex-shrink-0">
             <img src="${book.cover}" alt="Capa de ${book.title}" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x600/111827/FFFFFF?text=Imagem+N%C3%A3o+Dispon%C3%ADvel';">
         </div>
         <div class="w-full md:w-2/3 p-6 md:p-8 overflow-y-auto">
             <div class="flex justify-between items-start">
-                <h2 class="text-3xl font-bold text-orange-500 mb-2">${book.title}</h2>
+                <h2 id="modal-title-${book.id}" class="text-3xl font-bold text-orange-500 mb-2">${book.title}</h2>
                 <button id="close-modal" aria-label="Fechar modal" class="text-gray-400 hover:text-white transition-colors text-3xl leading-none">&times;</button>
             </div>
             <p class="text-lg text-gray-300 mb-4">por ${book.author}</p>
@@ -175,12 +240,14 @@ const openModal = (book: Audiobook) => {
     `;
     
     modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // Impede o scroll da página
+    document.body.style.overflow = 'hidden';
     
-    // Adiciona o listener para o botão de fechar
-    (document.getElementById('close-modal') as HTMLButtonElement).addEventListener('click', closeModal);
+    const closeModalBtn = document.getElementById('close-modal') as HTMLButtonElement;
+    closeModalBtn.addEventListener('click', closeModal);
+    closeModalBtn.focus();
     
-    // Animação de entrada
+    modal.addEventListener('keydown', trapFocus);
+    
     setTimeout(() => {
         modal.classList.add('opacity-100');
         modalContent.classList.remove('scale-95');
@@ -190,42 +257,88 @@ const openModal = (book: Audiobook) => {
 
 // --- FUNÇÃO PARA FECHAR O MODAL ---
 const closeModal = () => {
-     // Animação de saída
     modal.classList.remove('opacity-100');
     modalContent.classList.remove('scale-100');
     modalContent.classList.add('scale-95');
+    modal.removeEventListener('keydown', trapFocus);
 
     setTimeout(() => {
         modal.classList.add('hidden');
-        document.body.style.overflow = 'auto'; // Libera o scroll da página
+        document.body.style.overflow = 'auto';
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
     }, 300);
 };
 
-// --- LÓGICA DA BARRA DE BUSCA ---
-searchBar.addEventListener('input', (e) => {
-    const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
-    const filteredAudiobooks = audiobooks.filter(book => 
-        book.title.toLowerCase().includes(searchTerm) ||
-        book.author.toLowerCase().includes(searchTerm) ||
-        book.narrator.toLowerCase().includes(searchTerm)
-    );
-    renderAudiobooks(filteredAudiobooks);
+// --- LÓGICA DE FILTRAGEM E RENDERIZAÇÃO ---
+const filterAndRender = () => {
+    renderSkeletons();
+
+    setTimeout(() => {
+        const searchTerm = searchBar.value.toLowerCase();
+        let filteredAudiobooks = audiobooks;
+
+        // Filtro de Categoria
+        if (currentCategoryFilter) {
+            filteredAudiobooks = filteredAudiobooks.filter(book => book.category === currentCategoryFilter);
+        }
+
+        // Filtro de Busca
+        if (searchTerm) {
+            filteredAudiobooks = filteredAudiobooks.filter(book => 
+                book.title.toLowerCase().includes(searchTerm) ||
+                book.author.toLowerCase().includes(searchTerm) ||
+                book.narrator.toLowerCase().includes(searchTerm)
+            );
+        }
+        
+        renderAudiobooks(filteredAudiobooks);
+    }, 300); // Simula uma pequena latência de API para UX
+};
+
+// --- EVENT LISTENERS ---
+searchBar.addEventListener('input', filterAndRender);
+
+// Listeners das Categorias
+categoryCards.forEach(card => {
+    const category = card.getAttribute('data-category');
+    if (!category) return;
+
+    const handleSelectCategory = () => {
+        currentCategoryFilter = category;
+        categoryCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        clearFilterBtn.classList.remove('hidden');
+        filterAndRender();
+    };
+
+    card.addEventListener('click', handleSelectCategory);
+    // FIX: Explicitly type the event as KeyboardEvent to access the 'key' property.
+    card.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleSelectCategory();
+        }
+    });
 });
 
-// --- EVENT LISTENERS DO MODAL ---
-// Fecha o modal se clicar fora do conteúdo
+// Listener do botão de limpar filtro
+clearFilterBtn.addEventListener('click', () => {
+    currentCategoryFilter = null;
+    categoryCards.forEach(c => c.classList.remove('active'));
+    clearFilterBtn.classList.add('hidden');
+    filterAndRender();
+});
+
+// Listeners do Modal
 modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        closeModal();
-    }
+    if (e.target === modal) closeModal();
 });
-
-// Fecha o modal com a tecla 'Escape'
-document.addEventListener('keydown', (e) => {
-    if (e.key === "Escape" && !modal.classList.contains('hidden')) {
-        closeModal();
-    }
+// FIX: Explicitly type the event as KeyboardEvent to access the 'key' property.
+document.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === "Escape" && !modal.classList.contains('hidden')) closeModal();
 });
 
 // --- RENDERIZAÇÃO INICIAL ---
-renderAudiobooks(audiobooks);
+filterAndRender();

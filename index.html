@@ -46,6 +46,7 @@
                 <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">Encontre informações completas sobre seus audiolivros favoritos. Sinopse, narradores, estúdios e onde ouvir. Tudo em um só lugar.</p>
                 <div class="max-w-2xl mx-auto">
                     <div class="relative">
+                        <label for="search-bar" class="sr-only">Busque por título, autor ou narrador</label>
                         <input type="search" id="search-bar" placeholder="Busque por título, autor ou narrador..." class="w-full py-4 px-6 rounded-full bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all">
                         <svg class="w-6 h-6 text-gray-400 absolute right-6 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -79,18 +80,21 @@
         <!-- Categorias Section -->
         <section id="categorias" class="py-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Explore por Categoria</h2>
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">Explore por Categoria</h2>
+                    <button id="clear-filter-btn" class="hidden mt-4 text-orange-500 hover:text-orange-400 transition-colors">Limpar filtro</button>
+                </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all">
+                    <div class="category-card bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all" data-category="Ficção Científica" role="button" tabindex="0">
                         <h3 class="font-bold text-xl">Ficção Científica</h3>
                     </div>
-                    <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all">
+                    <div class="category-card bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all" data-category="Fantasia" role="button" tabindex="0">
                         <h3 class="font-bold text-xl">Fantasia</h3>
                     </div>
-                    <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all">
-                        <h3 class="font-bold text-xl">Biografia</h3>
+                    <div class="category-card bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all" data-category="Aventura" role="button" tabindex="0">
+                        <h3 class="font-bold text-xl">Aventura</h3>
                     </div>
-                    <div class="bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all">
+                    <div class="category-card bg-gray-800 rounded-lg p-6 text-center hover:bg-orange-500/20 cursor-pointer transition-all" data-category="Suspense" role="button" tabindex="0">
                         <h3 class="font-bold text-xl">Suspense</h3>
                     </div>
                 </div>
@@ -107,7 +111,7 @@
     </footer>
 
     <!-- Modal -->
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 hidden modal-backdrop">
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 hidden modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div id="modal-content" class="bg-gray-800 rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col md:flex-row overflow-hidden transform scale-95">
             <!-- Conteúdo do modal será inserido aqui pelo JavaScript -->
         </div>

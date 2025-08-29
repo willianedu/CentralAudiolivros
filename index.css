@@ -35,3 +35,45 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #6B7280; /* bg-gray-500 */
 }
+
+/* Accessibility utility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Active Category Style */
+.category-card.active {
+    outline: 2px solid #F97316; /* ring-orange-500 */
+    background-color: rgba(249, 115, 22, 0.1);
+}
+
+/* Skeleton Loader */
+.skeleton {
+    background-color: #1F2937; /* bg-gray-800 */
+    position: relative;
+    overflow: hidden;
+}
+.skeleton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
+}
