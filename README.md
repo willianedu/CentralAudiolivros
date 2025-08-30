@@ -6,40 +6,53 @@ A **Central Audiolivros** é uma vitrine digital para entusiastas de audiolivros
 
 > **Aviso:** Todos os audiolivros e suas informações são fictícios e servem apenas para demonstrar o funcionamento do site.
 
-## ✨ Principais Recursos
+## 📸 Demonstração da Página
 
-*   **Busca Rápida:** Encontre audiolivros por título, autor ou narrador.
-*   **Filtro por Categoria:** Navegue facilmente por gêneros como Ficção Científica, Fantasia e outros.
-*   **Detalhes Completos:** Veja informações detalhadas de cada livro em uma visualização prática.
-*   **Design Responsivo:** Acesse o site de qualquer dispositivo, seja computador, tablet ou celular.
-*   **Acessibilidade:** Navegação amigável, inclusive para quem utiliza apenas o teclado.
+![Demonstração da Central de Audiolivros](demo.apng)
 
-## 🚀 Status do Projeto
+## ✨ Funcionalidades
 
-Aqui está um resumo do que já foi feito e dos próximos passos planejados para a Central Audiolivros.
+- **Listagem de Audiolivros:** Exibe os audiolivros disponíveis em cards informativos.
+- **Busca de Audiolivros:** Permite ao usuário pesquisar por obras específicas.
+- **Link Externo:** Direciona o usuário para a plataforma onde o audiolivro está disponível para ser ouvido.
 
-### ✅ Concluído
+## 🎯 Objetivo
 
-*   **Interface Principal:** Estrutura visual e layout do site.
-*   **Listagem de Audiolivros:** Exibição dos livros a partir de uma base de dados interna.
-*   **Busca por Texto:** Campo de busca funcional.
-*   **Filtro por Categorias:** Botões de categoria que filtram a lista de livros.
-*   **Modal de Detalhes:** Janela com informações completas ao clicar em um livro.
-*   **Responsividade:** O site se adapta a diferentes tamanhos de tela.
-*   **Acessibilidade Básica:** Navegação via teclado e foco gerenciado no modal.
+O objetivo principal foi criar uma interface limpa e organizada para centralizar informações sobre audiolivros, facilitando a descoberta de novas obras. O projeto serviu como uma excelente prática para aplicar conceitos de desenvolvimento front-end, como a manipulação de dados e a criação de layouts dinâmicos.
 
-### 🎯 Próximas Etapas
+## 🚀 O que Aprendi
 
-*   **Integração com API:** Conectar o site a uma API real para buscar dados de audiolivros dinamicamente.
-*   **Sistema de Avaliação:** Permitir que usuários avaliem os audiolivros.
-*   **Páginas Individuais:** Criar uma página dedicada para cada audiolivro, com URL própria.
-*   **Animações Avançadas:** Adicionar transições mais fluidas para uma experiência de usuário aprimorada.
+- **Manipulação do DOM:** Utilizei JavaScript para criar e popular dinamicamente os elementos da página com as informações de cada audiolivro.
+- **Estrutura de Dados:** Pratiquei como estruturar dados (em um objeto JavaScript) para que pudessem ser facilmente percorridos e exibidos na interface.
+- **Eventos e Interatividade:** Desenvolvi a lógica para a funcionalidade de busca e para o clique que direciona o usuário para a plataforma externa.
+- **CSS Grid/Flexbox:** Aprofundei o uso dessas ferramentas para organizar os cards de audiolivros de forma eficiente e responsiva.
 
 ## 🛠️ Tecnologias Utilizadas
 
-O front-end do projeto está sendo construído com as seguintes tecnologias:
+- **HTML5**: Para a estrutura semântica da página.
+- **CSS3**: Para a estilização e criação de um layout responsivo.
+- **JavaScript (ES6+)**: Para a interatividade do usuário e manipulação dos dados.
 
-*   **HTML5:** Para a estruturação semântica do conteúdo.
-*   **CSS3:** Para estilizações customizadas e animações.
-*   **Tailwind CSS:** Um framework CSS utility-first para a criação rápida de interfaces de usuário modernas.
-*   **TypeScript:** Para adicionar tipagem estática ao JavaScript, garantindo um código mais robusto e de fácil manutenção.
+## ⚙️ Como Executar o Projeto
+
+#### **Pré-requisitos:**
+
+- **Navegador Web:** Qualquer navegador moderno (Chrome, Firefox, Edge).
+- **Git:** Para clonar o repositório (opcional, você pode baixar o ZIP).
+
+#### **Passo a Passo:**
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/willianedu/CentralAudiolivros.git](https://github.com/willianedu/CentralAudiolivros.git)
+    ```
+
+2.  **Acesse o diretório do projeto:**
+    ```bash
+    cd CentralAudiolivros
+    ```
+
+3.  **Abra o arquivo principal:**
+    -   Abra o arquivo `index.html` diretamente no seu navegador de preferência.
+
+---
