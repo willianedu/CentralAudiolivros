@@ -55,4 +55,10 @@ O objetivo principal foi criar uma interface limpa e organizada para centralizar
 3.  **Abra o arquivo principal:**
     -   Abra o arquivo `index.html` diretamente no seu navegador de preferência.
 
+## 📜 Licença
+
+O código-fonte deste projeto é licenciado sob a **Licença MIT**. Você pode encontrar o texto completo da licença no arquivo [`LICENSE`](LICENSE) neste repositório.
+
+O **conteúdo** exibido por esta aplicação, incluindo, mas não se limitando a, nomes de audiolivros, descrições, imagens de capa e links, é de propriedade de seus respectivos detentores de direitos autorais e está protegido por lei. A reutilização ou redistribuição deste conteúdo sem permissão explícita é proibida.
+
 ---
