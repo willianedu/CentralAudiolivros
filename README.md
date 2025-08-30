@@ -44,7 +44,7 @@ O objetivo principal foi criar uma interface limpa e organizada para centralizar
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/willianedu/CentralAudiolivros.git](https://github.com/willianedu/CentralAudiolivros.git)
+    git clone https://github.com/willianedu/CentralAudiolivros.git
     ```
 
 2.  **Acesse o diretório do projeto:**
