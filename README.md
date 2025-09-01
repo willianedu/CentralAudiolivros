@@ -4,7 +4,7 @@
 
 A **Central Audiolivros** é uma vitrine digital para entusiastas de audiolivros. O site foi criado para ser um local centralizado onde os usuários podem encontrar informações sobre diversas obras, incluindo sinopse, narrador e onde ouvir.
 
-> **Aviso:** Todos os audiolivros e suas informações são fictícios e servem apenas para demonstrar o funcionamento do site.
+> **Aviso:** Este é um projeto acadêmico com intuito de aprendizado, o mesmo pode receber ou não atualizações e melhorias no futuro. Todos os audiolivros e suas informações são fictícios e servem apenas para demonstrar o funcionamento do site.
 
 ## 📸 Demonstração da Página
 

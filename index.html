@@ -119,6 +119,17 @@
         </div>
     </div>
 
+    <!-- Academic Notice Toast -->
+    <div id="academic-notice" class="hidden fixed bottom-5 right-5 w-full max-w-sm p-4 bg-gray-800 border border-gray-700 rounded-lg shadow-lg text-gray-300 z-50" role="alert" aria-live="assertive">
+        <div class="flex justify-between items-start">
+            <div>
+                <h4 id="notice-title" class="font-bold text-orange-500 mb-2"></h4>
+                <p id="notice-text" class="text-sm"></p>
+            </div>
+            <button id="close-notice" aria-label="Fechar aviso" class="text-gray-500 hover:text-white transition-colors ml-4 text-3xl leading-none">&times;</button>
+        </div>
+    </div>
+
     <script type="module">
         /**
          * @license
@@ -437,8 +448,60 @@
             if (e.key === "Escape" && !modal.classList.contains('hidden')) closeModal();
         });
 
+        // --- ACADEMIC NOTICE LOGIC ---
+        const academicNotice = document.getElementById('academic-notice');
+        const closeNoticeBtn = document.getElementById('close-notice');
+
+        const showNotice = () => {
+            if (sessionStorage.getItem('academicNoticeDismissed')) {
+                return;
+            }
+
+            const noticeTitle = document.getElementById('notice-title');
+            const noticeTextEl = document.getElementById('notice-text');
+            const closeBtn = document.getElementById('close-notice');
+
+            const translations = {
+                pt: {
+                    title: "Aviso",
+                    text: `Este é um projeto acadêmico com intuito de aprendizado, o mesmo pode receber ou não atualizações e melhorias no futuro. O código-fonte está disponível no <a href="https://github.com/willianedu/CentralAudiolivros" target="_blank" rel="noopener noreferrer" class="text-orange-400 hover:underline">GitHub</a> e qualquer um é livre para fazer uso.`,
+                    closeLabel: "Fechar aviso"
+                },
+                en: {
+                    title: "Notice",
+                    text: `This is an academic project for learning purposes. It may or may not receive updates and improvements in the future. The source code is available on <a href="https://github.com/willianedu/CentralAudiolivros" target="_blank" rel="noopener noreferrer" class="text-orange-400 hover:underline">GitHub</a> and anyone is free to use it.`,
+                    closeLabel: "Close notice"
+                }
+            };
+
+            const userLang = navigator.language.slice(0, 2);
+            const content = translations[userLang] || translations.en;
+
+            noticeTitle.textContent = content.title;
+            noticeTextEl.innerHTML = content.text;
+            closeBtn.setAttribute('aria-label', content.closeLabel);
+
+            setTimeout(() => {
+                academicNotice.classList.remove('hidden');
+                academicNotice.classList.add('show-notice');
+            }, 1000);
+        };
+
+        const dismissNotice = () => {
+            academicNotice.classList.remove('show-notice');
+            setTimeout(() => {
+                academicNotice.classList.add('hidden');
+            }, 500); // Match transition duration
+            sessionStorage.setItem('academicNoticeDismissed', 'true');
+        };
+
+        if (closeNoticeBtn) {
+            closeNoticeBtn.addEventListener('click', dismissNotice);
+        }
+
         // --- RENDERIZAÇÃO INICIAL ---
         filterAndRender();
+        showNotice();
     </script>
 <script type="module" src="/index.tsx"></script>
 </body>
